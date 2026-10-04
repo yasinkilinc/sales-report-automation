@@ -1,0 +1,29 @@
+# One [[source]] block per export format. Adding a new channel needs no code change.
+# columns: our name = the column header in their file
+
+[report]
+currency = "EUR"
+
+[[source]]
+name = "Webshop"
+pattern = "webshop_orders_*.csv"
+currency = "EUR"
+date_format = "%Y-%m-%d %H:%M"
+columns = { order_id = "Order ID", date = "Created at", sku = "Lineitem sku", product = "Lineitem name", quantity = "Lineitem quantity", unit_price = "Lineitem price" }
+
+[[source]]
+name = "Marketplace"
+pattern = "marketplace_orders_*.xlsx"
+currency = "GBP"
+date_format = "%d/%m/%Y"
+read = { sheet_name = "Orders", skiprows = 2 }
+columns = { order_id = "order-id", date = "purchase-date", sku = "sku", product = "product-name", quantity = "quantity-purchased", unit_price = "item-price" }
+
+[[source]]
+name = "Wholesale"
+pattern = "wholesale_invoices_*.csv"
+currency = "USD"
+date_format = "%d.%m.%Y"
+decimal = ","
+read = { sep = ";" }
+columns = { order_id = "Invoice", date = "Invoice date", sku = "Item code", product = "Description", quantity = "Qty", unit_price = "Net price" }

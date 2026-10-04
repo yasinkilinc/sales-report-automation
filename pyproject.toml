@@ -1,0 +1,32 @@
+[project]
+name = "salesreport"
+version = "0.1.0"
+description = "Merge messy sales exports (CSV/Excel), convert currencies and build a formatted Excel report"
+readme = "README.md"
+authors = [{ name = "Yasin Kilinc" }]
+requires-python = ">=3.12"
+dependencies = [
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.6",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+salesreport = "salesreport.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "black>=26.5.1",
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
